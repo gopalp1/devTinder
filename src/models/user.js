@@ -19,11 +19,11 @@ lastName:{
         required:true,
         unique:true,
         trim:true,
-        // validate(value){
-        //     if(!validator.isEmail.value){
-        //         throw new Error("invalid email address") 
-        //     }
-        // }
+        validate(value){
+            if(!validator.isEmail.value){
+                throw new Error("invalid email address") 
+            }
+        }
     },
     password:{
         type:String
@@ -53,7 +53,7 @@ lastName:{
     timestamps:true
 }
 );
-userSchema.methods.getJwt =async function(){
+userSchema.methods.getJwt = async function(){
 const user = this;
 const token  = await jwt.sign({ _id: user._id }, "Gopal@123", {
     expiresIn: "7d",
